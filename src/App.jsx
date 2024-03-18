@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [id, setId] = useState(1)
+  const [id, setId] = useState(6)
   const [pokemon, setPokemon] = useState(null)
 
   useEffect(() => {
@@ -13,6 +13,8 @@ function App() {
       // pega o objeto e seta o valor no estado pokemon
       .then(data => {
         setPokemon(data)
+        console.log(pokemon.sprites.other.showdown.front_default
+          )
       })
    
   }, [id])
@@ -22,7 +24,7 @@ if(pokemon == null)return "Carregando"
     <>
       <h1>PokeApi</h1>
       {/* acessa o atrubuto front_default(imagem do pokemon) do objeto qye esta dentro do estado pokemon */}
-      <img src={pokemon.sprites.front_default}/>
+      <img src={pokemon.sprites.other.showdown.front_default}/>
       <h2>{pokemon.name}</h2>
       {/* avaliação preguiçosa: se for true renderiza o componente se for false não faz nada */}
     {  id>1 &&  <button onClick={() => setId(id - 1)}>Anterior</button>}
